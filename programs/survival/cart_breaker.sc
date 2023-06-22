@@ -23,7 +23,10 @@ __on_player_attacks_entity(player, entity) ->(
         spawn('item', ep, {'Item' -> {'id' -> entity_type~'(.+)_', 'Count' -> 1}, 'Motion' -> get_drop_motion()}),
         // chest_boat
         boat_type=query(entity,'nbt','Type');
-        spawn('item', ep, {'Item' -> {'id' -> boat_type+'_boat', 'Count' -> 1}, 'Motion' -> get_drop_motion()});
+        if(boat_type == 'bamboo',
+          spawn('item', ep, {'Item' -> {'id' -> boat_type+'_raft', 'Count' -> 1}, 'Motion' -> get_drop_motion()}),
+          spawn('item', ep, {'Item' -> {'id' -> boat_type+'_boat', 'Count' -> 1}, 'Motion' -> get_drop_motion()})
+        );
         spawn('item', ep, {'Item' -> {'id' -> 'chest', 'Count' -> 1}, 'Motion' -> get_drop_motion()});
       );
     );
